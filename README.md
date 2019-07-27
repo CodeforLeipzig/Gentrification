@@ -1,2 +1,3 @@
 # Gentrification
-Analyzing gentrification in Leipzig
+
+Collection of projects helping to analyze gentrification in Leipzig
