@@ -16,7 +16,7 @@ class NodeSink(
                 nodeIds.add(entity.id)
                 coords.put(entity.id, Coord(entity.latitude, entity.longitude))
                 if (nodeIds.size % 25 == 0) {
-                    println ("Found " + nodeIds.size.toString() + " nodes in bounds.")
+                    println("Found " + nodeIds.size.toString() + " nodes in bounds.")
                 }
             }
         }
