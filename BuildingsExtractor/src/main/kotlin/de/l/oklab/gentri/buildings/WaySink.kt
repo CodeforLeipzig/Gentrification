@@ -13,9 +13,6 @@ class WaySink(
 ) : Sink {
 
     override fun process(entityContainer: EntityContainer) {
-        // if (ways.size > 10) {
-        //    return
-        // }
         val entity = entityContainer.getEntity()
         if (entity is Way) {
             val buildingTag = entity.tags.firstOrNull { it.key.equals("building") }

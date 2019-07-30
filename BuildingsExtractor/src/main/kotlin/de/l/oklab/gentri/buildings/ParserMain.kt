@@ -4,7 +4,7 @@ import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
 
 fun main() {
-    val osmFile = File("D:/sachsen-190726.osm.pbf")
+    val osmFile = File("D:/sachsen-140101.osm.pbf")
     val reader = PbfReader(osmFile, 5)
 
     val nodeIds: MutableList<Long> = mutableListOf()
@@ -19,7 +19,7 @@ fun main() {
     reader.run()
 
     val fileContent = featureCollection(tags, ways)
-    File("D:/sachsen-190726-buildings-props.geojson").writeText(fileContent)
+    File("D:/sachsen-140101-buildings-props.geojson").writeText(fileContent)
 }
 
 fun featureCollection(propertiesList: List<Map<String, String>>, coordsList: List<List<Coord>>): String {
@@ -37,12 +37,12 @@ fun feature(props: Map<String, String>, coords: List<Coord>): String {
         {
           "type": "Feature",
           "properties": {
-            ${props.map {(k, v) -> "\"${replaceQuotes(k)}\": \"${replaceQuotes(v)}\""}}
+            ${(props.map {(k, v) -> "\"${replaceQuotes(k)}\": \"${replaceQuotes(v)}\""}).joinToString(",")}
           },
           "geometry": {
             "type": "Polygon",
             "coordinates": [[ 
-                ${sanatizedCoords(coords).map { coord -> "[" + coord.lon + "," + coord.lat + "]" }} 
+                ${(sanatizedCoords(coords).map { coord -> "[" + coord.lon + "," + coord.lat + "]" }).joinToString(",")} 
             ]]
           }
         }"""
