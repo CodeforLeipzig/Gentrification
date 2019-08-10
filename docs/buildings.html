@@ -57,12 +57,15 @@
 			}
 			return L.geoJson(data, style);
 		};
+		var layerLegendKey = function (year) {
+			var color = colors[years.indexOf(year)];
+			return "<span style='color: " + color + "'>Buildings " + year + "</span>"		
+		};
 		var handleGeoJsonLayers = function (dataList) {
 			var overlayMaps = {};
 			for (var j = 0; j < dataList.length; j++) {
 				var entry = dataList[j]
-				var color = colors[years.indexOf(entry.year)];
-				overlayMaps["<span style='color: " + color + "'>Buildings " + entry.year + "</span>"] = entry.geoJsonLayer;
+				overlayMaps[layerLegendKey(entry.year)] = entry.geoJsonLayer;
 			}
 			var webatlasOptions = {
 				layers: 'Siedlung,Vegetation,Gewaesser,Verkehr,Adminstrative_Einheiten,Beschriftung'
@@ -84,7 +87,7 @@
 			};
 			L.control.layers(baseMaps, overlayMaps).addTo(buildingsMap);
 			rohdopLayer2014.addTo(buildingsMap);
-			years.forEach(year => overlayMaps[year].addTo(buildingsMap));
+			years.forEach(year => overlayMaps[layerLegendKey(year)].addTo(buildingsMap));
 		};
 
 		var showDistrictBorderLayer = function(data) {
