@@ -46,9 +46,8 @@
 			return [center[1], center[0]];
 		};
 
-		var colors = ["green", "red", "brown", "yellow", "purple", "blue"]
+		var colors = ["green", "red", "brown", "orange", "hotpink", "blue"]
 		var years = [2014, 2015, 2016, 2017, 2018, 2019]
-		years.reverse()
 
 		var createGeoJsonLayer = function (data, colorName) {
 			var style = {
@@ -62,7 +61,8 @@
 			var overlayMaps = {};
 			for (var j = 0; j < dataList.length; j++) {
 				var entry = dataList[j]
-				overlayMaps[entry.year] = entry.geoJsonLayer;
+				var color = colors[years.indexOf(entry.year)];
+				overlayMaps["<span style='color: " + color + "'>Buildings " + entry.year + "</span>"] = entry.geoJsonLayer;
 			}
 			var webatlasOptions = {
 				layers: 'Siedlung,Vegetation,Gewaesser,Verkehr,Adminstrative_Einheiten,Beschriftung'
@@ -72,13 +72,18 @@
 				layers: 'sn_rohdop_020'
 			};
 			var rohdopLayer = L.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_rohdop-rgb/guest', rohdopOptions);
+			var rohdopOptions2014 = {
+				layers: 'dop_2012_2014_rgb'
+			};
+			var rohdopLayer2014 = L.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_dop_2012_2014/guest', rohdopOptions2014);
 			var baseMaps = {
 				"OSM": baseMap,
 				"geodienste.sachsen.de webatlas WMS": webatlasLayer,
-				"geodienste.sachsen.de rohdop WMS": rohdopLayer
+				"geodienste.sachsen.de rohdop WMS 2012 - 2014": rohdopLayer2014,
+				"geodienste.sachsen.de rohdop WMS 2018": rohdopLayer
 			};
 			L.control.layers(baseMaps, overlayMaps).addTo(buildingsMap);
-			rohdopLayer.addTo(buildingsMap);
+			rohdopLayer2014.addTo(buildingsMap);
 			years.forEach(year => overlayMaps[year].addTo(buildingsMap));
 		};
 
