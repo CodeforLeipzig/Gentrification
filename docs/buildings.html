@@ -64,11 +64,21 @@
 				var entry = dataList[j]
 				overlayMaps[entry.year] = entry.geoJsonLayer;
 			}
+			var webatlasOptions = {
+				layers: 'Siedlung,Vegetation,Gewaesser,Verkehr,Adminstrative_Einheiten,Beschriftung'
+			};
+			var webatlasLayer = L.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_webatlas-sn/guest', webatlasOptions);
+			var rohdopOptions = {
+				layers: 'sn_rohdop_020'
+			};
+			var rohdopLayer = L.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_rohdop-rgb/guest', rohdopOptions);
 			var baseMaps = {
-				"OSM": baseMap
+				"OSM": baseMap,
+				"geodienste.sachsen.de webatlas WMS": webatlasLayer,
+				"geodienste.sachsen.de rohdop WMS": rohdopLayer
 			};
 			L.control.layers(baseMaps, overlayMaps).addTo(buildingsMap);
-			baseMap.addTo(buildingsMap);
+			rohdopLayer.addTo(buildingsMap);
 			years.forEach(year => overlayMaps[year].addTo(buildingsMap));
 		};
 
