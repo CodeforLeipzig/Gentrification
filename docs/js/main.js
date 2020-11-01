@@ -1,6 +1,5 @@
 //var siteUrl = window.location.protocol + "//" + window.location.host + "/";
 var siteUrl = "https://codeforleipzig.github.io/Gentrification/";
-var siteUrl = "file://D:/git/Gentrification/docs/";
 requirejs.config({
   baseUrl: siteUrl + "js/",
   paths: {
