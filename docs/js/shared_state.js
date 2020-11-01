@@ -1,6 +1,7 @@
 define({
   state: () => {
     var baseMap;
+    var baseMapJson;
     var buildingMap;
     var lastSelectedDistrict;
     var oldLayer;
@@ -12,6 +13,7 @@ define({
 
     return {
       getBaseMap: () => { return baseMap },
+      getBaseMapJson: () => { return baseMapJson },
       getBuildingMap: () => { return buildingMap },
       getLastSelectedDistrict: () => { return lastSelectedDistrict },
       getOldLayer: () => { return oldLayer },
@@ -22,6 +24,7 @@ define({
       getLayersControl: () => { return layersControl },
 
       setBaseMap: (newBaseMap) => { baseMap = newBaseMap },
+      setBaseMapJson: (newBaseMapJson) => { baseMapJson = newBaseMapJson },
       setBuildingMap: (newBuildingMap) => { buildingMap = newBuildingMap },
       setLastSelectedDistrict: (newLastSelectedDistrict) => { lastSelectedDistrict = newLastSelectedDistrict },
       setOldLayer: (newOldLayer) => { oldLayer = newOldLayer },
