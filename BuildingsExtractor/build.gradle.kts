@@ -3,7 +3,7 @@ version = "0.1-SNAPSHOT"
 
 plugins {
     application
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm") version "1.3.50"
 }
 
 java {
@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50")
     implementation("org.openstreetmap.osmosis:osmosis-core:0.47")
     implementation("org.openstreetmap.osmosis:osmosis-extract:0.47")
     implementation("org.openstreetmap.osmosis:osmosis-pbf2:0.47")
