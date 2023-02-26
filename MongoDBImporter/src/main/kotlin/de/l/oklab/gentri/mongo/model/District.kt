@@ -13,6 +13,6 @@ data class District(
     @Property("geometry") var geometry: Geometry? = null
 ) {
 
-    fun getName(): String?  = props.get("Name")
-    fun getIndex(): String?  = props.get("OT")
+    fun getName(): String?  = props["Name"]
+    fun getIndex(): String?  = props["OT"]
 }

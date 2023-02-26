@@ -13,13 +13,13 @@ class WaySink(
 ) : Sink {
 
     override fun process(entityContainer: EntityContainer) {
-        val entity = entityContainer.getEntity()
+        val entity = entityContainer.entity
         if (entity is Way) {
             val buildingTag = entity.tags.firstOrNull { it.key.equals("building") }
             if (buildingTag != null) {
                 val wayOutOfBounds = entity.wayNodes.firstOrNull { wayNode -> nodeIds.contains(wayNode.nodeId) }
                 if (wayOutOfBounds != null) {
-                    val wayCoordsList = entity.wayNodes.map { coords.get(it.nodeId) }.filterNotNull()
+                    val wayCoordsList = entity.wayNodes.mapNotNull { coords[it.nodeId] }
                     ways.add(wayCoordsList)
                     tags.add(toMap(entity))
                     if (ways.size % 25 == 0) {
@@ -32,11 +32,11 @@ class WaySink(
 
     private fun toMap(entity: Entity): Map<String, String> {
         val map = HashMap<String, String>()
-        map.put("id", entity.id.toString())
-        map.put("version", entity.version.toString())
-        map.put("changeSetId", entity.changesetId.toString())
-        map.put("timestamp", entity.timestamp.time.toString())
-        entity.tags.forEach { tag -> map.put(tag.key, tag.value) }
+        map["id"] = entity.id.toString()
+        map["version"] = entity.version.toString()
+        map["changeSetId"] = entity.changesetId.toString()
+        map["timestamp"] = entity.timestamp.time.toString()
+        entity.tags.forEach { tag -> map[tag.key] = tag.value }
         return map
     }
 

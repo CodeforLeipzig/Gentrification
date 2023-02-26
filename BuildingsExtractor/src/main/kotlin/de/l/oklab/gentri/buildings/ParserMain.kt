@@ -23,11 +23,11 @@ fun main() {
 }
 
 fun featureCollection(propertiesList: List<Map<String, String>>, coordsList: List<List<Coord>>): String {
-    val range = 0 until propertiesList.size
+    val range = propertiesList.indices
     return """{
   "type": "FeatureCollection",
   "features": [
-     ${range.map { feature(propertiesList.get(it), coordsList.get(it)) }.joinToString(",\n")}
+     ${range.joinToString(",\n") { feature(propertiesList[it], coordsList[it]) }}
   ]
 }"""
 }
@@ -53,9 +53,9 @@ fun replaceQuotes(str: String): String {
 }
 
 fun sanatizedCoords(way: List<Coord>): List<Coord> {
-    if (!way.isEmpty()) {
-        val first = way.get(0)
-        if (way.size < 4 || first != way.get(way.size - 1)) {
+    if (way.isNotEmpty()) {
+        val first = way[0]
+        if (way.size < 4 || first != way[way.size - 1]) {
             val newWay = ArrayList<Coord>(way)
             newWay.add(first)
             return newWay

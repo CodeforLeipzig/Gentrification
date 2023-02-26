@@ -10,11 +10,11 @@ class NodeSink(
 ) : Sink {
 
     override fun process(entityContainer: EntityContainer) {
-        val entity = entityContainer.getEntity()
+        val entity = entityContainer.entity
         if (entity is Node) {
             if (nodeIsInBounds(entity)) {
                 nodeIds.add(entity.id)
-                coords.put(entity.id, Coord(entity.latitude, entity.longitude))
+                coords[entity.id] = Coord(entity.latitude, entity.longitude)
                 if (nodeIds.size % 25 == 0) {
                     println("Found " + nodeIds.size.toString() + " nodes in bounds.")
                 }

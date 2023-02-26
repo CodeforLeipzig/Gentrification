@@ -23,7 +23,7 @@ fun main() {
             try {
                 collection.insertOne(Document.parse(featureJson))
             } catch (e: Exception) {
-                println("""$year-$i-$featureJson: $e""")
+                println("$year-$i-$featureJson: $e")
             }
         }
     }

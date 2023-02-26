@@ -13,7 +13,7 @@ const val outputPath = "/home/joerg/Schreibtisch/geojsons/"
 
 fun main() {
     val morphia = Morphia()
-    morphia.mapPackage("de.l.oklab.gentri.mongo.model");
+    morphia.mapPackage("de.l.oklab.gentri.mongo.model")
     val datastore = morphia.createDatastore(MongoClient(), "joerg")
     storeGeojsonFile(datastore)
 
@@ -54,4 +54,4 @@ fun featureCollection(features: List<String>): String {
 
 fun getDistrictNames(datastore: Datastore): List<String>  = datastore.createAggregation(District::class.java)
         .project(Projection.projection("properties.Name")).aggregate(District::class.java)
-        .asSequence().asIterable().map { it.getName() }.filterNotNull()
+        .asSequence().asIterable().mapNotNull { it.getName() }

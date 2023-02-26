@@ -8,7 +8,7 @@ import dev.morphia.geo.Polygon
 
 fun main() {
     val morphia = Morphia()
-    morphia.mapPackage("de.l.oklab.gentri.mongo.model");
+    morphia.mapPackage("de.l.oklab.gentri.mongo.model")
     val datastore = morphia.createDatastore(MongoClient(), "joerg")
     for (year in 2014 until 2024) {
         for (district in getDistricts(datastore)) {
@@ -32,7 +32,7 @@ fun storeBuildungsByYearAndDistrict(datastore: Datastore, year: Int, district: D
     }
     val query = datastore.find(building)
     query.criteria("geometry").within(district.geometry as Polygon)
-    val targetCollection = """buildings-$year-${district.getName()}"""
+    val targetCollection = "buildings-$year-${district.getName()}"
     datastore.createAggregation(building).match(query).out(targetCollection, building)
 }
 
