@@ -19,7 +19,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
     implementation("org.mongodb:mongodb-driver-sync:_")
-    implementation("dev.morphia.morphia:core:_")
+    implementation("dev.morphia.morphia:morphia-core:_")
     implementation("com.fasterxml.jackson.core:jackson-core:_")
     implementation("com.fasterxml.jackson.core:jackson-annotations:_")
     implementation("com.fasterxml.jackson.core:jackson-databind:_")

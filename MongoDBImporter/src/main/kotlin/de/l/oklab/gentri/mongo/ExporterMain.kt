@@ -1,16 +1,18 @@
 package de.l.oklab.gentri.mongo
 
-import com.mongodb.MongoClient
+import com.mongodb.ConnectionString
+import com.mongodb.client.MongoClients
+import com.mongodb.client.model.geojson.Polygon
 import de.l.oklab.gentri.mongo.model.*
 import dev.morphia.Datastore
 import dev.morphia.Morphia
-import dev.morphia.geo.Polygon
+import dev.morphia.aggregation.stages.Out
+import dev.morphia.query.filters.Filters
 
 fun main() {
-    val morphia = Morphia()
-    morphia.mapPackage("de.l.oklab.gentri.mongo.model")
-    val datastore = morphia.createDatastore(MongoClient(), "joerg")
-    for (year in 2014 until 2024) {
+    val datastore = Morphia.createDatastore(MongoClients.create(ConnectionString("mongodb://admin:admin@localhost:27017")), "joerg")
+    datastore.mapper.mapPackage("de.l.oklab.gentri.mongo.model")
+    for (year in 2020 until 2021) {
         for (district in getDistricts(datastore)) {
             storeBuildungsByYearAndDistrict(datastore, year, district)
         }
@@ -30,10 +32,10 @@ fun storeBuildungsByYearAndDistrict(datastore: Datastore, year: Int, district: D
         2022 -> Building2022::class.java
         else -> Building2023::class.java
     }
-    val query = datastore.find(building)
-    query.criteria("geometry").within(district.geometry as Polygon)
     val targetCollection = "buildings-$year-${district.getName()}"
-    datastore.createAggregation(building).match(query).out(targetCollection, building)
+    datastore.aggregate(building).match(
+            Filters.geoWithin("geometry", district.geometry as Polygon)
+    ).out(Out.to(targetCollection))
 }
 
 fun getDistricts(datastore: Datastore): List<District> {

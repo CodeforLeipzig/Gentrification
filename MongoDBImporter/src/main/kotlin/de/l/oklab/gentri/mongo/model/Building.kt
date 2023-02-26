@@ -1,9 +1,9 @@
 package de.l.oklab.gentri.mongo.model
 
+import com.mongodb.client.model.geojson.Geometry
 import dev.morphia.annotations.Entity
 import dev.morphia.annotations.Id
 import dev.morphia.annotations.Property
-import dev.morphia.geo.Geometry
 import org.bson.types.ObjectId
 
 open class Building(
