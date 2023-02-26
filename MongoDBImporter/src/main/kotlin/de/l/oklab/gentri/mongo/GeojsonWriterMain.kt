@@ -23,7 +23,7 @@ fun storeGeojsonFile(datastore: Datastore) {
     val mongoClient = MongoClients.create()
     val database = mongoClient.getDatabase("joerg")
     val objectMapper = ObjectMapper()
-    for (year in 2014 until 2020) {
+    for (year in 2014 until 2024) {
         for (districtName in getDistrictNames(datastore)) {
             val collection = database.getCollection("""buildings-$year-$districtName""")
             val features = collection.find().asIterable().map { it.remove("_id"); it.toJson() }

@@ -3,35 +3,35 @@ version = "0.1-SNAPSHOT"
 
 plugins {
     application
-    kotlin("jvm") version "1.3.50"
+    id("com.github.ben-manes.versions")
+    kotlin("jvm")
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
-    jcenter()
-    maven("https://repo.maven.apache.org/maven2/")
+    mavenCentral()
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50")
-    implementation("org.openstreetmap.osmosis:osmosis-core:0.47")
-    implementation("org.openstreetmap.osmosis:osmosis-extract:0.47")
-    implementation("org.openstreetmap.osmosis:osmosis-pbf2:0.47")
-    implementation("org.openstreetmap.osmosis:osmosis-core:0.47")
-    implementation("org.openstreetmap.osmosis:osmosis-extract:0.47")
-    implementation("org.openstreetmap.osmosis:osmosis-pbf2:0.47")
-    api("junit:junit:4.12")
-    implementation("junit:junit:4.12")
-    testImplementation("junit:junit:4.12")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:_")
+    implementation("org.openstreetmap.osmosis:osmosis-core:_")
+    implementation("org.openstreetmap.osmosis:osmosis-extract:_")
+    implementation("org.openstreetmap.osmosis:osmosis-pbf2:_")
+    implementation("org.openstreetmap.osmosis:osmosis-core:_")
+    implementation("org.openstreetmap.osmosis:osmosis-extract:_")
+    implementation("org.openstreetmap.osmosis:osmosis-pbf2:_")
+    api(Testing.junit4)
+    implementation(Testing.junit4)
+    testImplementation(Testing.junit4)
     implementation(kotlin("stdlib"))
 }
 
 application {
-    mainClassName = "de.l.oklab.gentri.buildings.ParserMain"
+    mainClass.value("de.l.oklab.gentri.buildings.ParserMainKt")
 }
 
 

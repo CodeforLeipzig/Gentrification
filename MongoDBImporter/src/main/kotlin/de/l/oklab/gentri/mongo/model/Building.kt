@@ -29,3 +29,15 @@ class Building2018(id: ObjectId?, props: Map<String, String>, geometry: Geometry
 
 @Entity("osm-leipzig-20190101")
 class Building2019(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)
+
+@Entity("osm-leipzig-20200101")
+class Building2020(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)
+
+@Entity("osm-leipzig-20210101")
+class Building2021(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)
+
+@Entity("osm-leipzig-20220101")
+class Building2022(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)
+
+@Entity("osm-leipzig-20230101")
+class Building2023(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)

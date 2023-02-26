@@ -11,7 +11,7 @@ const val sourcePath = "/media/Daten/"
 fun main() {
     val mongoClient = MongoClients.create()
     val database = mongoClient.getDatabase("joerg")
-    for (year in 14 until 20) {
+    for (year in 14 until 24) {
         val collection = database.getCollection("""osm-leipzig-20${year}0101""")
         val objectMapper = ObjectMapper()
         val rootNode = objectMapper.readValue(File("""$sourcePath/sachsen-${year}0101-buildings-props.geojson"""),
