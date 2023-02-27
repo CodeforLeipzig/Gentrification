@@ -18,10 +18,10 @@ fun main() {
 }
 
 fun storeGeojsonFile(datastore: Datastore) {
-    val mongoClient = MongoClients.create()
+    val mongoClient = MongoClients.create(ConnectionString("mongodb://admin:admin@localhost:27017"))
     val database = mongoClient.getDatabase("joerg")
     val objectMapper = ObjectMapper()
-    for (year in 2020 until 2021) {
+    for (year in (2014..2023)) {
         for (districtName in getDistrictNames(datastore)) {
             val collection = database.getCollection("""buildings-$year-$districtName""")
             val features = collection.find().asIterable().map { it.remove("_id"); it.toJson() }
@@ -50,5 +50,10 @@ fun featureCollection(features: List<String>): String {
     }"""
 }
 
-fun getDistrictNames(datastore: Datastore): List<String> = datastore.aggregate(District::class.java)
-        .project(Projection.project().include("properties.Name")).execute(String::class.java).toList()
+fun getDistrictNames(datastore: Datastore): List<String> =
+        datastore.aggregate(District::class.java)
+                .project(Projection.project().include("properties.Name"))
+                .execute(District::class.java)
+                .toList()
+                .mapNotNull { it.getName() }
+

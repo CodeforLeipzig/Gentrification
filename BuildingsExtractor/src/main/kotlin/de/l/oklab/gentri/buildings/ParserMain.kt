@@ -4,22 +4,24 @@ import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
 
 fun main() {
-    val osmFile = File("/media/daten/sachsen-200101.osm.pbf")
-    val reader = PbfReader(osmFile, 5)
+    for (year in (14..23)) {
+        val osmFile = File("/media/daten/sachsen-${year}0101.osm.pbf")
+        val reader = PbfReader(osmFile, 5)
 
-    val nodeIds: MutableList<Long> = mutableListOf()
-    val coords: MutableMap<Long, Coord> = mutableMapOf()
-    val tags: MutableList<Map<String, String>> = mutableListOf()
-    val ways: MutableList<List<Coord>> = mutableListOf()
+        val nodeIds: MutableList<Long> = mutableListOf()
+        val coords: MutableMap<Long, Coord> = mutableMapOf()
+        val tags: MutableList<Map<String, String>> = mutableListOf()
+        val ways: MutableList<List<Coord>> = mutableListOf()
 
-    reader.setSink(NodeSink(nodeIds, coords))
-    reader.run()
+        reader.setSink(NodeSink(nodeIds, coords))
+        reader.run()
 
-    reader.setSink(WaySink(nodeIds, coords, ways, tags))
-    reader.run()
+        reader.setSink(WaySink(nodeIds, coords, ways, tags))
+        reader.run()
 
-    val fileContent = featureCollection(tags, ways)
-    File("/media/daten/sachsen-200101.geojson").writeText(fileContent)
+        val fileContent = featureCollection(tags, ways)
+        File("/media/daten/sachsen-${year}0101.geojson").writeText(fileContent)
+    }
 }
 
 fun featureCollection(propertiesList: List<Map<String, String>>, coordsList: List<List<Coord>>): String {

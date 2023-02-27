@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ArrayNode
 import com.mongodb.client.MongoClients
 import org.bson.Document
-import java.nio.file.Files
 import java.nio.file.Paths
 
 fun main() {
@@ -22,7 +21,7 @@ fun main() {
         for (file in files!!) {
             val rootNode = objectMapper.readValue(file, JsonNode::class.java)
             val featuresNode = rootNode.get("features") as ArrayNode
-            for (i in 0 until  featuresNode.size()) {
+            for (i in 0 until featuresNode.size()) {
                 val featureJson = featuresNode.get(i).toString()
                 try {
                     collection.insertOne(Document.parse(featureJson))

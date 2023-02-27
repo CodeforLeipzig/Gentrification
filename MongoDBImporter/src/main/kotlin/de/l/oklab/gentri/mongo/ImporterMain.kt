@@ -12,7 +12,7 @@ const val sourcePath = "/media/daten/"
 fun main() {
     val mongoClient = MongoClients.create("mongodb://admin:admin@localhost:27017")
     val database = mongoClient.getDatabase("joerg")
-    for (year in 20 until 21) {
+    for (year in (14..23)) {
         val collection = database.getCollection("""osm-leipzig-20${year}0101""")
         val objectMapper = ObjectMapper().configure(
                 JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(),
