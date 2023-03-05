@@ -30,6 +30,6 @@ define(["jquery", "leaflet", "leaflet.ajax"], ($, leaflet, leafletAjax) => ({
   },
   layerLegendKey: (years, colors, year) => {
     var color = colors[years.indexOf(year)];
-    return "<span style='color: " + color + "'>Buildings " + year + "</span>";
+    return "<span style='color: " + color + "'>&#9724; Buildings " + year + "</span>";
   }
 }));
