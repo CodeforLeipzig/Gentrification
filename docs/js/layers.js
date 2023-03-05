@@ -78,7 +78,8 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
     state.setLayersControl(layersControl);
     layersControl.addTo(buildingsMap);
     state.getBaseMapJson()["geodienste.sachsen.de rohdop WMS aktuell"].addTo(buildingsMap);
-    years.forEach(year => overlayMaps[map.layerLegendKey(years, colors, year)].addTo(buildingsMap));
+    const selectedYears = [ years[0], years[years.length-1] ];
+    selectedYears.forEach(year => overlayMaps[map.layerLegendKey(years, colors, year)].addTo(buildingsMap));
     state.getInfo().update();
   },
 }));
