@@ -6,7 +6,6 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
     for (var j = 0; j < dataList.length; j++) {
       var entry = dataList[j]
       overlayMaps[map.layerLegendKey(years, colors, entry.year)] = entry.geoJsonLayer;
-      state.getLastOverlayLayers().push(entry.geoJsonLayer);
     }
     // https://gis-portal.de.tl/WMS_Dienste.htm
     // https://www.landesvermessung.sachsen.de/slider-historische-luftbilder-6020.html
@@ -78,8 +77,16 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
     state.setLayersControl(layersControl);
     layersControl.addTo(buildingsMap);
     state.getBaseMapJson()["geodienste.sachsen.de rohdop WMS aktuell"].addTo(buildingsMap);
-    const selectedYears = [ years[0], years[years.length-1] ];
-    selectedYears.forEach(year => overlayMaps[map.layerLegendKey(years, colors, year)].addTo(buildingsMap));
+    const selectedIndexes = [ 0, years.length ];
+    if (!state.getLastDistrictLayer()) {
+      state.setLastSelectedDistrict("Zentrum-Sued");
+    }
+    if (state.getLastOverlayLayers().length == 0) {
+      selectedIndexes.forEach(selectedIndex => state.getLastOverlayLayers().push(dataList[selectedIndex].geoJsonLayer));
+    }
+    if (state.getLastBuildingLayers().length == 0) {
+      selectedIndexes.forEach(selectedIndex => overlayMaps[map.layerLegendKey(years, colors, years[selectedIndex])].addTo(buildingsMap));
+    }
     state.getInfo().update();
   },
 }));
