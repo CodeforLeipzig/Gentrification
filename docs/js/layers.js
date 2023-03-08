@@ -81,7 +81,7 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
     if (!state.getLastDistrictLayer()) {
       state.setLastSelectedDistrict("Zentrum-Sued");
     }
-    if (state.getLastOverlayLayers().length == 0) {
+    if (state.getLastOverlayLayers().length == 0 && dataList[selectedIndex] != null && dataList[selectedIndex].geoJsonLayer != null) {
       selectedIndexes.forEach(selectedIndex => state.getLastOverlayLayers().push(dataList[selectedIndex].geoJsonLayer));
     }
     if (state.getLastBuildingLayers().length == 0) {
