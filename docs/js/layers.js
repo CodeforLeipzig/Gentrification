@@ -18,6 +18,10 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
         layers: 'sn_rohdop_020'
       };
       var rohdopLayer = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_rohdop-rgb/guest', rohdopOptions);
+      var rohdopOptions2021 = {
+        layers: 'dop_2021_2022_rgb'
+      };
+      var rohdopLayer2021 = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_dop_2021_2022/guest', rohdopOptions2021);
       var rohdopOptions2018 = {
         layers: 'dop_2018_2020_rgb'
       };
@@ -66,6 +70,7 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
         "geodienste.sachsen.de rohdop WMS 2012-2014": rohdopLayer2014,
         "geodienste.sachsen.de rohdop WMS 2015-2017": rohdopLayer2015,
         "geodienste.sachsen.de rohdop WMS 2018-2020": rohdopLayer2018,
+        "geodienste.sachsen.de rohdop WMS 2021-2022": rohdopLayer2021,
         "geodienste.sachsen.de rohdop WMS aktuell": rohdopLayer
       };
     }

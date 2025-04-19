@@ -8,8 +8,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_19
+    targetCompatibility = JavaVersion.VERSION_19
 }
 
 repositories {
@@ -24,9 +24,6 @@ dependencies {
     implementation("org.openstreetmap.osmosis:osmosis-core:_")
     implementation("org.openstreetmap.osmosis:osmosis-extract:_")
     implementation("org.openstreetmap.osmosis:osmosis-pbf2:_")
-    api(Testing.junit4)
-    implementation(Testing.junit4)
-    testImplementation(Testing.junit4)
     implementation(kotlin("stdlib"))
 }
 

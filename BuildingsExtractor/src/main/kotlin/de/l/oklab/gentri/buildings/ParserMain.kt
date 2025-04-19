@@ -4,8 +4,8 @@ import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
 
 fun main() {
-    for (year in (14..23)) {
-        val osmFile = File("/media/daten/sachsen-${year}0101.osm.pbf")
+    for (year in (24..25)) {
+        val osmFile = File("/Users/joerg_p/Downloads/sachsen-${year}0101.osm.pbf")
         val reader = PbfReader(osmFile, 5)
 
         val nodeIds: MutableList<Long> = mutableListOf()
@@ -20,7 +20,7 @@ fun main() {
         reader.run()
 
         val fileContent = featureCollection(tags, ways)
-        File("/media/daten/sachsen-${year}0101.geojson").writeText(fileContent)
+        File("/Users/joerg_p/Downloads/sachsen-${year}0101.geojson").writeText(fileContent)
     }
 }
 
