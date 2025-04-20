@@ -4,7 +4,7 @@ import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
 
 fun main() {
-    for (year in (24..25)) {
+    for (year in (24..24)) {
         val osmFile = File("/Users/joerg_p/Downloads/sachsen-${year}0101.osm.pbf")
         val reader = PbfReader(osmFile, 5)
 
