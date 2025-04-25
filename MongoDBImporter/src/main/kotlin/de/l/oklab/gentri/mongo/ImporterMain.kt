@@ -7,18 +7,18 @@ import com.mongodb.client.MongoClients
 import org.bson.Document
 import java.io.File
 
-const val sourcePath = "/media/daten/"
+const val sourcePath = "/Users/joerg_p/Desktop/gentrification/input"
 
 fun main() {
     val mongoClient = MongoClients.create("mongodb://admin:admin@localhost:27017")
     val database = mongoClient.getDatabase("joerg")
-    for (year in (14..23)) {
+    for (year in (24..25)) {
         val collection = database.getCollection("""osm-leipzig-20${year}0101""")
         val objectMapper = ObjectMapper().configure(
                 JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(),
                 true
         )
-        val rootNode = objectMapper.readValue(File("""$sourcePath/sachsen-${year}0101-buildings-props.geojson"""),
+        val rootNode = objectMapper.readValue(File("""$sourcePath/sachsen-${year}0101.geojson"""),
                 JsonNode::class.java)
         val featuresNode = rootNode.get("features") as ArrayNode
         for (i in 1 until featuresNode.size()) {

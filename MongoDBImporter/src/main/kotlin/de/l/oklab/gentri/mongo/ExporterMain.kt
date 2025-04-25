@@ -12,7 +12,7 @@ import dev.morphia.query.filters.Filters
 fun main() {
     val datastore = Morphia.createDatastore(MongoClients.create(ConnectionString("mongodb://admin:admin@localhost:27017")), "joerg")
     datastore.mapper.mapPackage("de.l.oklab.gentri.mongo.model")
-    for (year in (2014..2023)) {
+    for (year in (2024..2025)) {
         for (district in getDistricts(datastore)) {
             storeBuildungsByYearAndDistrict(datastore, year, district)
         }
@@ -30,7 +30,9 @@ fun storeBuildungsByYearAndDistrict(datastore: Datastore, year: Int, district: D
         2020 -> Building2020::class.java
         2021 -> Building2021::class.java
         2022 -> Building2022::class.java
-        else -> Building2023::class.java
+        2023 -> Building2023::class.java
+        2024 -> Building2024::class.java
+        else -> Building2025::class.java
     }
     val targetCollection = "buildings-$year-${district.getName()}"
     datastore.aggregate(building).match(

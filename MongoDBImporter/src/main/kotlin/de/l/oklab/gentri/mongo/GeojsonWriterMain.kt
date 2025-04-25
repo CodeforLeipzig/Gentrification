@@ -9,7 +9,7 @@ import dev.morphia.Morphia
 import dev.morphia.aggregation.stages.Projection
 import java.io.File
 
-const val outputPath = "/home/joerg/Schreibtisch/geojsons/"
+const val outputPath = "/Users/joerg_p/Desktop/gentrification/geojsons/"
 
 fun main() {
     val datastore = Morphia.createDatastore(MongoClients.create(ConnectionString("mongodb://admin:admin@localhost:27017")), "joerg")
@@ -21,7 +21,7 @@ fun storeGeojsonFile(datastore: Datastore) {
     val mongoClient = MongoClients.create(ConnectionString("mongodb://admin:admin@localhost:27017"))
     val database = mongoClient.getDatabase("joerg")
     val objectMapper = ObjectMapper()
-    for (year in (2014..2023)) {
+    for (year in (2024..2025)) {
         for (districtName in getDistrictNames(datastore)) {
             val collection = database.getCollection("""buildings-$year-$districtName""")
             val features = collection.find().asIterable().map { it.remove("_id"); it.toJson() }

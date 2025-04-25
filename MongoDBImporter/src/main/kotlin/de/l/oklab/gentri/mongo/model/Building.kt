@@ -41,3 +41,9 @@ class Building2022(id: ObjectId?, props: Map<String, String>, geometry: Geometry
 
 @Entity("osm-leipzig-20230101")
 class Building2023(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)
+
+@Entity("osm-leipzig-20240101")
+class Building2024(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)
+
+@Entity("osm-leipzig-20250101")
+class Building2025(id: ObjectId?, props: Map<String, String>, geometry: Geometry?): Building(id, props, geometry)

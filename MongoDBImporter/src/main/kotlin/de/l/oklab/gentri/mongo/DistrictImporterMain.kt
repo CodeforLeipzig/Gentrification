@@ -13,7 +13,7 @@ fun main() {
     val database = mongoClient.getDatabase("joerg")
     for (year in 20 until 21) {
         val collection = database.getCollection("""osm-leipzig-ortsteile""")
-        val files = Paths.get("/media/daten/git/Gentrification/docs/geojsons/districts").toFile().listFiles()
+        val files = Paths.get(System.getProperty("user.dir") + "/../docs/geojsons/districts").toFile().listFiles()
         val objectMapper = ObjectMapper().configure(
                 JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(),
                 true
