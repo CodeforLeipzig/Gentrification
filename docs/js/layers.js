@@ -14,8 +14,16 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
         layers: 'Siedlung,Vegetation,Gewaesser,Verkehr,Adminstrative_Einheiten,Beschriftung'
       };
       var webatlasLayer = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_webatlas-sn/guest', webatlasOptions);
-      var rohdopOptions = {
-        layers: 'sn_rohdop_020'
+      var leipzigWmsOptions = {
+        layers: 'Lufbild_2024_mit_Beschriftung'
+      };
+      var leipzigWmsLayer2024 = leaflet.tileLayer.wms('https://gis02.leipzig.de/arcgis2/services/Portal/Luftbild_2024_mit_Beschriftung/MapServer/WMSServer?request=GetCapabilities&service=WMS', leipzigWmsOptions);
+      var dopOptions = {
+        layers: 'sn_dop_020'
+      };
+      var dopLayer = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest', dopOptions);
+      var rohdopOptions2021 = {
+        layers: 'dop_2021_2022_rgb'
       };
       var rohdopLayer = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_rohdop-rgb/guest', rohdopOptions);
       var rohdopOptions2021 = {
@@ -71,7 +79,9 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
         "geodienste.sachsen.de rohdop WMS 2015-2017": rohdopLayer2015,
         "geodienste.sachsen.de rohdop WMS 2018-2020": rohdopLayer2018,
         "geodienste.sachsen.de rohdop WMS 2021-2022": rohdopLayer2021,
-        "geodienste.sachsen.de rohdop WMS aktuell": rohdopLayer
+        "geodienste.sachsen.de rohdop WMS aktuell": rohdopLayer,
+        "geodienste.sachsen.de dop WMS aktuell": dopLayer,
+        "ArcGIS Server Leipzig Luftbild 2024": leipzigWmsLayer2024,
       };
     }
     if (!state.getBaseMapJson()) {
