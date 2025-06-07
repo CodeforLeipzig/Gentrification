@@ -22,8 +22,8 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
         layers: 'sn_dop_020'
       };
       var dopLayer = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest', dopOptions);
-      var rohdopOptions2021 = {
-        layers: 'dop_2021_2022_rgb'
+      var rohdopOptions = {
+        layers: 'sn_rohdop_020'
       };
       var rohdopLayer = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_rohdop-rgb/guest', rohdopOptions);
       var rohdopOptions2021 = {
