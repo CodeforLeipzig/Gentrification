@@ -14,10 +14,10 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
         layers: 'Siedlung,Vegetation,Gewaesser,Verkehr,Adminstrative_Einheiten,Beschriftung'
       };
       var webatlasLayer = leaflet.tileLayer.wms('https://geodienste.sachsen.de/wms_geosn_webatlas-sn/guest', webatlasOptions);
-      var leipzigWmsOptions = {
-        layers: 'Portal_Luftbild_2024_mit_Beschriftung'
-      };
-      var leipzigWmsLayer2024 = leaflet.tileLayer.wms('https://gis02.leipzig.de/arcgis2/services/Portal/Luftbild_2024_mit_Beschriftung/MapServer/WMSServer?', leipzigWmsOptions);
+      var leipzigWmsLayer2024 = leaflet.tileLayer.wms('https://gis02.leipzig.de/arcgis2/services/Portal/Luftbild_2024_mit_Beschriftung/MapServer/WMSServer?', {
+        layers: 0,
+        format: 'image/png'
+      });
       var rohdopOptions = {
         layers: 'sn_rohdop_020'
       };
