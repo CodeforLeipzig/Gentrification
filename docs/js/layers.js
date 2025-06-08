@@ -76,7 +76,6 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
         "geodienste.sachsen.de rohdop WMS 2018-2020": rohdopLayer2018,
         "geodienste.sachsen.de rohdop WMS 2021-2022": rohdopLayer2021,
         "geodienste.sachsen.de rohdop WMS aktuell": rohdopLayer,
-        "geodienste.sachsen.de dop WMS aktuell": dopLayer,
         "ArcGIS Server Leipzig Luftbild 2024": leipzigWmsLayer2024,
       };
     }
