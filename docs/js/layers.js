@@ -17,7 +17,7 @@ define(["jquery", "leaflet", "leaflet.ajax", "map", "constants"], ($, leaflet, l
       var leipzigWmsOptions = {
         layers: 'Portal_Luftbild_2024_mit_Beschriftung'
       };
-      var leipzigWmsLayer2024 = leaflet.tileLayer.wms('https://gis02.leipzig.de/arcgis2/services/service?', leipzigWmsOptions);
+      var leipzigWmsLayer2024 = leaflet.tileLayer.wms('https://gis02.leipzig.de/arcgis2/services/Portal/Luftbild_2024_mit_Beschriftung/MapServer/WMSServer?', leipzigWmsOptions);
       var rohdopOptions = {
         layers: 'sn_rohdop_020'
       };
